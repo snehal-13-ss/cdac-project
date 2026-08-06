@@ -1,0 +1,301 @@
+# 🛡️ AI-Powered DevSecOps Vulnerability Remediation Pipeline
+
+## 📌 Overview
+
+This project is an **AI-driven DevSecOps security automation pipeline** that continuously scans container images for vulnerabilities, generates AI-based remediation commands using **Google Gemini**, logs security findings into **PostgreSQL**, and visualizes security metrics through **Grafana**.
+
+The pipeline integrates vulnerability scanning, AI-assisted patch generation, database logging, and monitoring into a single automated workflow.
+
+---
+
+## 🚀 Features
+
+* 🔍 Scan Docker container images using **Trivy**
+* 🤖 Generate AI-powered remediation commands with **Google Gemini**
+* 🛢️ Store vulnerability telemetry in **PostgreSQL**
+* 📊 Visualize security metrics using **Grafana**
+* 🐳 Docker Compose support for infrastructure deployment
+* 💻 Vagrant support for reproducible development environments
+* 📈 Maintain historical vulnerability records for auditing
+
+---
+
+## 🏗️ Project Structure
+
+```text
+project/
+│── AIsecurity_pipeline.py     # Main security automation pipeline
+│── docker-compose.yml         # PostgreSQL + Grafana services
+│── init.sql                   # Database schema
+│── Vagrantfile                # Virtual development environment
+└── README.md
+```
+
+---
+
+## ⚙️ Technologies Used
+
+| Technology        | Purpose                           |
+| ----------------- | --------------------------------- |
+| Python            | Main automation logic             |
+| Trivy             | Container vulnerability scanner   |
+| Google Gemini API | AI-generated remediation commands |
+| PostgreSQL        | Vulnerability logging database    |
+| Grafana           | Security dashboard                |
+| Docker Compose    | Service orchestration             |
+| Vagrant           | Development environment           |
+
+---
+
+## 🔄 Workflow
+
+1. Scan the target Docker image using **Trivy**
+2. Detect HIGH and CRITICAL vulnerabilities
+3. Generate remediation commands with **Google Gemini**
+4. Store scan results in PostgreSQL
+5. Display vulnerability metrics in Grafana
+6. Repeat for continuous monitoring
+
+```text
+Docker Image
+      │
+      ▼
++--------------+
+|    Trivy     |
++--------------+
+      │
+      ▼
+Detected CVEs
+      │
+      ▼
++-------------------+
+| Google Gemini API |
++-------------------+
+      │
+AI Patch Command
+      │
+      ▼
++--------------+
+| PostgreSQL   |
++--------------+
+      │
+      ▼
++--------------+
+|   Grafana    |
++--------------+
+```
+
+---
+
+## 📋 Prerequisites
+
+Install the following before running the project:
+
+* Python 3.10+
+* Docker
+* Docker Compose
+* Vagrant (optional)
+* Trivy
+* PostgreSQL (if not using Docker)
+* Google Gemini API Key
+
+---
+
+## 🔧 Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/AI-DevSecOps-Pipeline.git
+
+cd AI-DevSecOps-Pipeline
+```
+
+### 2. Install Python dependencies
+
+```bash
+pip install psycopg2-binary google-genai
+```
+
+### 3. Install Trivy
+
+Example (Linux):
+
+```bash
+sudo apt install trivy
+```
+
+Or install it from Aqua Security for your operating system.
+
+---
+
+## 🔑 Environment Variables
+
+Set your Gemini API key:
+
+Linux/macOS
+
+```bash
+export GEMINI_API_KEY=YOUR_API_KEY
+```
+
+Windows (PowerShell)
+
+```powershell
+$env:GEMINI_API_KEY="YOUR_API_KEY"
+```
+
+Database password (optional)
+
+```bash
+export DB_PASSWORD=securepassword123
+```
+
+---
+
+## 🐳 Start Supporting Services
+
+Run PostgreSQL and Grafana:
+
+```bash
+docker compose up -d
+```
+
+This starts:
+
+* PostgreSQL on **localhost:5432**
+* Grafana on **http://localhost:3001**
+
+Default Grafana credentials:
+
+```
+Username: admin
+Password: admin
+```
+
+---
+
+## ▶️ Run the Pipeline
+
+```bash
+python AIsecurity_pipeline.py
+```
+
+The pipeline will:
+
+* Scan the target image
+* Detect vulnerabilities
+* Request remediation suggestions from Gemini
+* Save results to PostgreSQL
+* Print remediation actions
+
+---
+
+## 🗄️ Database Schema
+The pipeline stores information similar to the following:
+
+Column	Description
+id	Primary Key
+scan_timestamp	Scan Time
+target_artifact	Docker Image
+cve_id	Vulnerability ID
+package_name	Vulnerable Package
+severity	Severity Level
+ai_suggested_patch	AI Recommendation
+human_action	Manual Verification
+vulnerability_url	Reference Link
+created_at	Record Timestamp
+
+---
+
+## 📊 Grafana Dashboard
+
+Grafana can be connected to the PostgreSQL database to visualize:
+
+* Total vulnerabilities
+* Severity distribution
+* CVE history
+* Recently detected threats
+* AI remediation history
+* Security trends over time
+
+---
+
+## 📸 Example Output
+
+```text
+[1/4] Scanning Docker image...
+
+Detected:
+CVE-2023-38545
+
+Severity:
+CRITICAL
+
+Package:
+curl
+
+AI Suggested Fix:
+apt-get install --only-upgrade -y curl
+
+Saved to PostgreSQL.
+```
+
+---
+
+## 📈 Future Improvements
+
+* Kubernetes integration
+* Automatic patch deployment
+* CI/CD pipeline integration
+* Slack and Email alerts
+* Support for multiple container registries
+* Role-based dashboard access
+* Compliance reporting
+* Multi-cloud deployment
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature-name
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push the branch
+
+```bash
+git push origin feature-name
+```
+
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is intended for educational and research purposes. Add your preferred open-source license (e.g., MIT, Apache 2.0, or GPL) before public release.
+
+---
+
+## 👨‍💻 Author
+
+**Ashutosh Chourasia**
+
+* Python
+* DevSecOps
+* Cyber Security
+* AI Automation
+* Docker
+* PostgreSQL
+* Grafana
+* Google Gemini API
